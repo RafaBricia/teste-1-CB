@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTE - CÓDIGO DE BARRAS</title>
+</head>
+
+<body>
+    <br>
+    <div style="text-align: center;" id="camera">
+
+    </div>
+    <!-- <div style="text-align: center;">
+        
+        <button id="teste-leitura-foto" type="button">TESTE 1 - LEITURA COD BARRA - FOTO</button><BR></BR>
+
+        <button id="teste-leitura-frame" type="button">TESTE 2 - LEITURA COD BARRA - VIDEO</button><BR></BR>
+
+        <button id="teste-leitura-video-enquadrado" type="button">TESTE 2 - LEITURA COD BARRA - VIDEO
+            ENQUADRADO</button>
+
+    </div> -->
+
+    <script src="quagga.js"></script>
+    <script>
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector('#camera')    // Or '#yourElement' (optional)
+            },
+            decoder: {
+                readers: ["ean_reader", "ean_14_reader"]
+            }
+        }, function (err) {
+            if (err) {
+                console.log(err);
+                return
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
+
+</html>
